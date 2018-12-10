@@ -9,7 +9,6 @@
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
 
-
 <%= form_with(model: [ @category, @product ]) do |form| %>
 <% if @category.errors.any? %>
 <div id="error_explanation">
@@ -29,11 +28,19 @@
   </div>
 
   <div class="field">
-  	<%= form.label :prices %>
-    <%= form.text_field :prices %>
+  	<%= form.label :price %>
+    <%= form.text_field :price %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+
+<ul style="background-color: yellow">
+	<% @category.products.each do |product| %>
+		<li> Product: <%= product.name %> <%= link_to " delete", category_product_path(@category, product), method: :delete %> </li>
+		<li> Price: <%= product.price %> </li>
+	<% end %>
+</ul>
