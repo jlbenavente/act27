@@ -11,7 +11,29 @@
 
 
 <%= form_with(model: [ @category, @product ]) do |form| %>
-  <%= form.text_field :name %>
-  <%= form.text_field :prices %>
-  <%= form.submit %>
+<% if @category.errors.any? %>
+<div id="error_explanation">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+  	<%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+  	<%= form.label :prices %>
+    <%= form.text_field :prices %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>
