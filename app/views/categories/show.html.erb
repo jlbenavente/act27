@@ -37,10 +37,21 @@
   </div>
 <% end %>
 
-
-<ul style="background-color: yellow">
-	<% @category.products.each do |product| %>
-		<li> Product: <%= product.name %> <%= link_to " delete", category_product_path(@category, product), method: :delete %> </li>
-		<li> Price: <%= product.price %> </li>
-	<% end %>
-</ul>
+<table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <% @category.products.each do |product| %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= product.price %></td>
+            <td><%= link_to "Destroy", category_product_path(@category, product), method: :delete, class:'btn btn-danger' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
